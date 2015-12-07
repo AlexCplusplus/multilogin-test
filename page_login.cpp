@@ -20,7 +20,6 @@ Page_Login::Page_Login(int x, int y, int w, int h, const char *label)
     inpPwd = new Fl_Input(x + 160, y + 140, 180, 30, LBL_PWD);      // Ввод пароля
     end();
 
-    box(FL_THIN_UP_BOX);
     inpPwd->input_type(FL_SECRET_INPUT);
 }
 

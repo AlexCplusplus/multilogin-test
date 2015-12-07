@@ -60,6 +60,7 @@ Fl_Window* ApplicationImplementation::create_main_window() const
             new MultiLogin::Page_Serv(20, 20, 480, 280);    // Child #1
         }
         wzd->end();
+        wzd->box(FL_THIN_DOWN_FRAME);
 
         // Child #1
         new Fl_Check_Button(20, 320, 300, 30, LBL_TERM);
