@@ -51,6 +51,18 @@ void btnSubmit_Click(Fl_Widget *w, void *context)
 
 
 /**
+ * Обработка нажатия флажка завершения сессий
+ */
+void chkTerm_Click(Fl_Widget *w, void *context)
+{
+    Fl_Check_Button *chkTerm = static_cast<Fl_Check_Button *>(w);
+    Logic *logic = reinterpret_cast<Logic *>(context);
+
+    logic->term(static_cast<bool>(chkTerm->value()));
+}
+
+
+/**
  * Обработка для страницы данных пользователя
  */
 void pageLogin_submit(Fl_Window *win, Logic *logic)
@@ -64,7 +76,6 @@ void pageLogin_submit(Fl_Window *win, Logic *logic)
     Page_Serv *pgServ = static_cast<Page_Serv *>(wzd->child(1));
     Fl_Pack *pckPanel = static_cast<Fl_Pack *>(pgServ->child(0));
 
-    Fl_Check_Button *chkTerm = static_cast<Fl_Check_Button *>(win->child(1));
     Fl_Box *boxMsg = static_cast<Fl_Box *>(win->child(3));
 
     // Функция проверки строки ввода
@@ -91,7 +102,6 @@ void pageLogin_submit(Fl_Window *win, Logic *logic)
     // Установка значений
     logic->username(inpLogin->value());
     logic->pwd(inpPwd->value());
-    logic->term(static_cast<bool>(chkTerm->value()));
 
     // Запись в лог
     std::string msgLogged("Logged as ");

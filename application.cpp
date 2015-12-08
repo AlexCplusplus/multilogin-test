@@ -63,7 +63,8 @@ Fl_Window* ApplicationImplementation::create_main_window() const
         wzd->box(FL_THIN_DOWN_FRAME);
 
         // Child #1
-        new Fl_Check_Button(20, 320, 300, 30, LBL_TERM);
+        Fl_Check_Button *chkTerm = new Fl_Check_Button(20, 320, 300, 30, LBL_TERM);
+        chkTerm->callback(chkTerm_Click, reinterpret_cast<void *>(logic.get()));
 
         // Child #2
         Fl_Button *btnSubmit = new Fl_Button(420, 320, 80, 30, LBL_SUBMIT);

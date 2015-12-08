@@ -12,6 +12,12 @@ namespace MultiLogin {
 void btnSubmit_Click(Fl_Widget *, void *);
 
 
+/**
+ * @brief Обработчик нажатия флажка завершения сессий
+ */
+void chkTerm_Click(Fl_Widget *, void *);
+
+
 } // namespace MultiLogin
 
 
