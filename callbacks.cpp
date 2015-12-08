@@ -1,5 +1,5 @@
 #include <string>
-#include <regex>
+#include <locale>
 
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Check_Button.H>
@@ -67,14 +67,23 @@ void pageLogin_submit(Fl_Window *win, Logic *logic)
     Fl_Check_Button *chkTerm = static_cast<Fl_Check_Button *>(win->child(1));
     Fl_Box *boxMsg = static_cast<Fl_Box *>(win->child(3));
 
-    std::basic_regex<char> rx_input("[a-zA-Z0-9]+");
+    // Функция проверки строки ввода
+    auto check_input = [] (const char *s) -> bool {
+        std::locale c_loc("C");
+        int n = 0;      // Количество символов
+        for ( ; *s; ++s, ++n) {
+            if (!std::isalnum(*s, c_loc))
+                return false;
+        }
+        return n > 0;
+    };
 
     // Проверка ввода
-    if (!std::regex_match(inpLogin->value(), rx_input)) {
+    if (!check_input(inpLogin->value())) {
         boxMsg->label(MSG_INCORRECT_NAME);
         return;
     }
-    if (!std::regex_match(inpPwd->value(), rx_input)) {
+    if (!check_input(inpPwd->value())) {
         boxMsg->label(MSG_INCORRECT_PWD);
         return;
     }
